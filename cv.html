@@ -77,8 +77,6 @@
             margin-top: 30px;
             color: #555;
         }
-    </style>
-    <style>
         @media print {
             body {
                 background: white;
@@ -128,8 +126,11 @@
         <a href="index.html" class="inline-block px-4 py-2 bg-gray-700 text-white text-sm rounded hover:bg-gray-800 transition">
             ← Back to Website
         </a>
+        <button onclick="downloadPDF()" class="inline-block mt-4 px-4 py-2 bg-blue-700 text-white text-sm rounded hover:bg-blue-800 transition">
+            ⬇ Download PDF
+        </button>
     </div>
-   
+
     <div class="header">
         <h1>Naz Al Kassm</h1>
         <div class="job-title">APPLICATION DEVELOPER</div>
@@ -229,5 +230,25 @@
     <div class="references">
         References Upon Request
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+      function downloadPDF() {
+        const element = document.body.cloneNode(true);
+
+        // Remove download button and back-to-website from PDF
+        element.querySelector('.no-print')?.remove();
+
+        html2pdf()
+          .set({
+            margin: 0.5,
+            filename: 'Naz_Al_Kassm_CV.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+          })
+          .from(element)
+          .save();
+      }
+    </script>
 </body>
 </html>
