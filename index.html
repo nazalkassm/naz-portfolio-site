@@ -92,6 +92,77 @@
           <p class="text-sm text-gray-700 mb-2">Built full-stack VR applications for user interaction research at Carleton.</p>
           <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Unity</span>
         </div>
+        <!-- Card: APIScan.io with accordion -->
+<div class="bg-white shadow-md rounded-lg p-6">
+  <h4 class="text-lg font-semibold mb-2">
+    APIScan.io - AI-Powered API Security Scanner
+  </h4>
+
+  <p class="text-sm text-gray-700 mb-4">
+    SaaS platform that scans OpenAPI/Swagger specs, detects every
+    <a href="https://owasp.org/www-project-api-security/" target="_blank" class="text-blue-600 hover:underline">
+      OWASP API Top 10
+    </a>
+    issue, and explains risks in plain language.
+  </p>
+
+  <!-- Tech badges -->
+  <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Python / FastAPI</span>
+  <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">HTMX</span>
+  <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">GPT-4</span>
+  <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded mr-1 mb-1">OWASP ZAP</span>
+  <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-1 mb-1">SQLAlchemy</span>
+  <span class="inline-block text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded mb-1">ReportLab</span>
+
+  <!-- Accordion trigger -->
+  <button
+    class="mt-4 text-sm text-blue-600 hover:underline focus:outline-none"
+    hx-on="click:
+      const d = document.getElementById('apiscan-details');
+      d.classList.toggle('hidden');
+      this.textContent = d.classList.contains('hidden') ? 'Show details' : 'Hide details';
+    ">
+    Show details
+  </button>
+
+  <!-- Details (hidden by default) -->
+  <div id="apiscan-details" class="hidden mt-4 text-sm space-y-6">
+
+    <!-- Key Achievements -->
+    <div>
+      <h5 class="font-semibold mb-2">Key Achievements</h5>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Dual-mode scanner (static + dynamic ZAP) — 100 % OWASP API Top 10 coverage.</li>
+        <li>GPT-4 generates audience-aware explanations (developers ↔ CISOs).</li>
+        <li>Free / Pro / Enterprise tiers with usage billing &amp; IP allow-listing.</li>
+        <li>Session auth, bcrypt hashing, full audit logging.</li>
+        <li>Real-time HTMX UI + PDF &amp; CSV export.</li>
+      </ul>
+    </div>
+
+    <!-- Technical Highlights -->
+    <div>
+      <h5 class="font-semibold mb-2">Technical Highlights</h5>
+      <ul class="list-disc list-inside space-y-1">
+        <li>95 %+ test coverage with <code>pytest</code>.</li>
+        <li>Rate-limiting, CAPTCHA, email verification.</li>
+        <li>Feature-flag system for safe rollout &amp; A/B testing.</li>
+      </ul>
+    </div>
+
+    <!-- Business Impact -->
+    <div>
+      <h5 class="font-semibold mb-2">Business Impact</h5>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Cuts assessment time from hours to minutes.</li>
+        <li>One-click PDF reports for auditors.</li>
+        <li>AI explanations let non-technical teams grasp risk fast.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
       </div>
 
     </section>
@@ -219,5 +290,6 @@
       }
     });
   </script>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </body>
 </html>
