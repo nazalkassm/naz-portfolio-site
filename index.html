@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naz Al Kassm | Portfolio</title>
-
-  <!-- Load theme early to prevent flash -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@6.7.0/css/flag-icons.min.css">
   <script>
     if (
       localStorage.theme === 'dark' ||
@@ -17,8 +16,6 @@
       document.documentElement.classList.remove('dark');
     }
   </script>
-
-  <!-- Tailwind CSS with dark mode -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -26,158 +23,82 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              light: '#f9fafb',
-              dark: '#111827'
-            },
-            text: {
-              light: '#1f2937',
-              dark: '#f3f4f6'
-            },
-            surface: {
-              light: '#ffffff',
-              dark: '#1f2937'
-            }
+            brand: { light: '#f9fafb', dark: '#111827' },
+            surface: { light: '#ffffff', dark: '#1f2937' },
+            text: { light: '#1f2937', dark: '#f3f4f6' }
           },
-          borderRadius: {
-            xl: '1rem'
+          boxShadow: {
+            smooth: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            smoothDark: '0 4px 12px rgba(0, 0, 0, 0.5)'
           },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif']
-          }
+          borderRadius: { xl: '1rem' }
         }
       }
     }
   </script>
-
   <style>
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+    #theme-icon { transition: transform 0.5s ease; }
+    #theme-icon.rotate { transform: rotate(180deg); }
+    * { transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; }
+    a { color: #2563eb; }
+    .dark a { color: #60a5fa; }
+    .card {
+      background-color: #ffffff;
+      color: #1f2937;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
     }
-    #theme-icon {
-      transition: transform 0.5s ease;
-    }
-    #theme-icon.rotate {
-      transform: rotate(180deg);
-    }
-    * {
-      transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    .dark .card {
+      background-color: #1f2937;
+      color: #f3f4f6;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
 
 <body class="bg-brand-light dark:bg-brand-dark text-text-light dark:text-text-dark font-sans antialiased">
-  <header class="text-center py-10">
-    <h1 class="text-3xl font-semibold">Naz Al Kassm</h1>
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">IT Specialist • 🇨🇦 Federal Gov</p>
-    <nav class="mt-4 space-x-4 text-sm text-gray-700 dark:text-gray-300">
-      <a href="#about" class="hover:underline">About</a>
-      <a href="#portfolio" class="hover:underline">Portfolio</a>
-      <a href="#hobbies" class="hover:underline">Hobbies</a>
-      <a href="#contact" class="hover:underline">Contact</a>
-      <a href="cv.html" class="hover:underline">CV</a>
-    </nav>
-  </header>
 
-  <main class="max-w-2xl mx-auto px-4 space-y-16">
-    <section id="about">
-      <h2 class="text-xl font-semibold mb-2">About</h2>
-      <p class="text-sm text-gray-700 dark:text-gray-300">
-        Naz Al Kassm is an experienced IT professional specializing in IT change requests,
-        business analysis, and full-stack development with the Canadian public sector. He works at IRCC supporting the Digital Platform Modernization programme
-        and part-time with DND supporting secure network infrastructure.
-      </p>
-      <ul class="mt-4 list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
-        <li>Master's in Computer Science (HCI), Carleton University</li>
-        <li>IT Analyst at IRCC</li>
-        <li>Communications & Infrastructure Specialist at DND</li>
-        <li>Data visualization & executive reporting</li>
-        <li>VR development and HCI research</li>
-      </ul>
-    </section>
+<!-- Theme Toggle Button -->
+<button id="theme-toggle" aria-label="Toggle Dark Mode"
+  class="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-full p-3 shadow-md hover:shadow-lg transition duration-300">
+  <span id="theme-icon" class="text-2xl">🌙</span>
+</button>
 
-    <section id="portfolio">
-      <h2 class="text-xl font-semibold border-b pb-2 mb-6">Projects & Work</h2>
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function setTheme(mode) {
+    document.documentElement.classList.toggle('dark', mode === 'dark');
+    localStorage.theme = mode;
+    icon.textContent = mode === 'dark' ? '🌞' : '🌙';
+    icon.classList.add('rotate');
+    setTimeout(() => icon.classList.remove('rotate'), 500);
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    icon.textContent = isDark ? '🌞' : '🌙';
+  });
+  toggleBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    setTheme(isDark ? 'light' : 'dark');
+  });
+</script>
 
-      <div class="space-y-6">
-        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-          <h3 class="text-lg font-medium mb-1">Salesforce Full-Stack Development – CXP</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            Built Lightning Web Components, Apex backends, and real-time integrations for the GCMS platform.
-          </p>
-        </div>
-
-        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-          <h3 class="text-lg font-medium mb-1">Digital Credentials Pilot</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            Defined user workflows and wrote user stories for the IRCC digital-credential pilot project.
-          </p>
-        </div>
-
-        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-          <h3 class="text-lg font-medium mb-1">Permanent Residence & CBSA Fees Change</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">
-            Led business workshops and delivery coordination for urgent fee structure updates.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="hobbies">
-      <h2 class="text-xl font-semibold border-b pb-2 mb-4">Hobbies & Interests</h2>
-      <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-        <li>Gym, Fitness & Sauna recovery</li>
-        <li>Swimming & Outdoor running</li>
-        <li>Chess & Cybersecurity training</li>
-        <li>Spending time with family & travelling</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2 class="text-xl font-semibold border-b pb-2 mb-4">Contact</h2>
-      <form id="contact-form" class="space-y-4">
-        <input type="text" name="name" placeholder="Your Name"
-          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100" />
-        <input type="email" name="email" placeholder="Your Email"
-          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100" />
-        <textarea name="message" rows="4" placeholder="Your Message"
-          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100"></textarea>
-        <button type="submit"
-          class="w-full bg-gray-900 dark:bg-white text-white dark:text-black rounded px-4 py-2 text-sm font-medium hover:opacity-90">Send</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- Dark Mode Toggle Button -->
-  <button id="theme-toggle" aria-label="Toggle Dark Mode"
-    class="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white
-           rounded-full p-3 shadow-md hover:shadow-lg transition duration-300">
-    <span id="theme-icon" class="text-2xl">🌙</span>
-  </button>
-
-  <!-- Theme Toggle Script -->
-  <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
-
-    function setTheme(mode) {
-      document.documentElement.classList.toggle('dark', mode === 'dark');
-      localStorage.theme = mode;
-      icon.textContent = mode === 'dark' ? '🌞' : '🌙';
-      icon.classList.add('rotate');
-      setTimeout(() => icon.classList.remove('rotate'), 500);
+<!-- Emoji and HTMX Scripts -->
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof twemoji !== 'undefined') {
+      twemoji.parse(document.body);
+    } else {
+      console.warn('twemoji is not defined. Emoji parsing skipped.');
     }
+  });
+</script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      icon.textContent = isDark ? '🌞' : '🌙';
-    });
-
-    toggleBtn.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      setTheme(isDark ? 'light' : 'dark');
-    });
-  </script>
 </body>
 
 </html>
