@@ -342,7 +342,7 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-20 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-xl mx-auto">
+    <div id="contact-wrapper" class="relative max-w-xl mx-auto">
       <h2 class="section-title text-4xl font-bold text-center mb-12">Get In Touch</h2>
       
       <form id="contact-form" action="" class="card p-8 space-y-6 transition-colors duration-500">
@@ -368,6 +368,11 @@
           Send Message
         </button>
         </form>
+        <!-- Family photo overlay -->
+        <img id="family-cover"
+             src="assets/family.png"
+             class="hidden absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg
+                    opacity-0 scale-90 transition-all duration-700 z-20" />
         <script>
           const form = document.getElementById('contact-form');
 
@@ -469,6 +474,20 @@
               opacity-0 scale-90 transition-all duration-700 z-50" />
 
   <script>
+    function showFamily() {
+      const pic = document.getElementById('family-cover');
+      pic.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        pic.style.opacity   = '1';
+        pic.style.transform = 'scale(1)';
+      });
+      setTimeout(() => {
+        pic.style.opacity   = '0';
+        pic.style.transform = 'scale(0.9)';
+        setTimeout(() => pic.classList.add('hidden'), 700);
+      }, 6000);
+    }
+
     const pic   = document.getElementById('family-easter');
     const show  = () => {
       pic.classList.remove('hidden');
@@ -484,8 +503,8 @@
       }, 6000);
     };
 
-    document.getElementById('luna-trigger')     ?.addEventListener('click', show);
-    document.getElementById('butterfly-trigger')?.addEventListener('click', show);
+    document.getElementById('luna-trigger')     ?.addEventListener('click', showFamily);
+    document.getElementById('butterfly-trigger')?.addEventListener('click', showFamily);
   </script>
 
   <img id="luna-moon"
