@@ -93,6 +93,12 @@
       color: theme('colors.text.dark');
       box-shadow: theme('boxShadow.smoothDark');
     }
+    .section-title {
+      color: theme('colors.text.light');
+    }
+    .dark .section-title {
+      color: theme('colors.text.dark');
+    }
   </style>
 </head>
 
@@ -129,7 +135,7 @@
   <main class="max-w-4xl mx-auto p-6 space-y-12">
 
     <section id="about">
-      <h2 class="text-xl font-semibold mb-2">About</h2>
+      <h2 class="section-title text-xl font-semibold mb-2">About</h2>
       <p>
         Naz Al Kassm is an experienced IT professional specializing in IT change requests business analysis, and full
         stack application development with the Canadian public sector.
@@ -154,18 +160,18 @@
     </section>
 
     <section id="portfolio" class="pt-10">
-      <h2 class="text-2xl font-bold border-b pb-2 mb-6">Projects & Work</h2>
+      <h2 class="section-title text-2xl font-bold border-b pb-2 mb-6">Projects & Work</h2>
 
       <!-- IRCC Projects -->
-      <h3 class="text-xl font-semibold mb-4 mt-8 text-gray-700">IRCC Projects</h3>
+      <h3 class="section-title text-xl font-semibold mb-4 mt-8">IRCC Projects</h3>
       <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <!-- Salesforce Full-Stack Development (CXP) -->
         <div class="card transition-colors duration-300">
 
-          <h4 class="text-lg font-semibold mb-2">
+          <h4 class="section-title text-lg font-semibold mb-2">
             Salesforce Full-Stack Development&nbsp;– CXP
           </h4>
-          <p class="text-sm text-gray-700 mb-2">
+          <p class="text-sm mb-2">
             Building the new Customer&nbsp;Experience&nbsp;Platform: Lightning Web Components on
             the front-end, Apex &amp; Integration Procedures on the back-end, and real-time
             APIs to GCMS.
@@ -185,8 +191,8 @@
         <!-- Digital Credentials Pilot (DPM3) -->
         <div class="card transition-colors duration-300">
 
-          <h4 class="text-lg font-semibold mb-2">Digital Credentials Pilot</h4>
-          <p class="text-sm text-gray-700 mb-2">
+          <h4 class="section-title text-lg font-semibold mb-2">Digital Credentials Pilot</h4>
+          <p class="text-sm mb-2">
             Create user workflows and user stories for the
             <span class="whitespace-nowrap">DPM3&nbsp;digital-credential</span> pilot project.
           </p>
@@ -202,10 +208,10 @@
         <!-- Permanent Residence (PR) Fees Change -->
         <div class="card transition-colors duration-300">
 
-          <h4 class="text-lg font-semibold mb-2">
+          <h4 class="section-title text-lg font-semibold mb-2">
             Permanent Residence & CBSA &nbsp;Fees Change
           </h4>
-          <p class="text-sm text-gray-700 mb-2">
+          <p class="text-sm mb-2">
             Led requirements workshops and coordinated urgent updates across GCMS, payment
             portals, and web channels to implement government-mandated fee changes on an
             accelerated timeline.
@@ -223,8 +229,8 @@
         <!-- Card: Pearson Integration -->
         <div class="card transition-colors duration-300">
 
-          <h4 class="text-lg font-semibold mb-2">Pearson Integration</h4>
-          <p class="text-sm text-gray-700 mb-2">Integrated new test provider into GCMS systems with stakeholder
+          <h4 class="section-title text-lg font-semibold mb-2">Pearson Integration</h4>
+          <p class="text-sm mb-2">Integrated new test provider into GCMS systems with stakeholder
             coordination.</p>
           <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">GCMS</span>
           <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Business Analysis</span>
@@ -237,12 +243,12 @@
       <!-- Card: Excel Dashboards -->
 
       <!-- DND Work -->
-      <h3 class="text-xl font-semibold mb-4 mt-10 text-gray-700">DND Projects</h3>
+      <h3 class="section-title text-xl font-semibold mb-4 mt-10">DND Projects</h3>
       <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div class="card transition-colors duration-300">
 
-          <h4 class="text-lg font-semibold mb-2">Communications & IT infrastructure</h4>
-          <p class="text-sm text-gray-700 mb-2">Operate secure radio, satellite, and computer networks</p>
+          <h4 class="section-title text-lg font-semibold mb-2">Communications & IT infrastructure</h4>
+          <p class="text-sm mb-2">Operate secure radio, satellite, and computer networks</p>
           <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Networking</span>
           <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">Security</span>
           <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">ITIL
@@ -252,23 +258,23 @@
       </div>
 
       <!-- Research & Fun Projects -->
-      <h3 class="text-xl font-semibold mb-4 mt-10 text-gray-700">Research Work</h3>
+      <h3 class="section-title text-xl font-semibold mb-4 mt-10">Research Work</h3>
       <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
       <div class="card transition-colors duration-300">
 
-        <h4 class="text-lg font-semibold mb-2">VR Development</h4>
-        <p class="text-sm text-gray-700 mb-2">Built full-stack VR applications for user interaction research at
+        <h4 class="section-title text-lg font-semibold mb-2">VR Development</h4>
+        <p class="text-sm mb-2">Built full-stack VR applications for user interaction research at
           Carleton.</p>
         <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Unity</span>
         <span class="inline-block text-xs bg-red-100 text-indigo-800 px-2 py-1 rounded">C#</span>
       </div>
       <!-- Card: APIScan.io with accordion -->
       <div class="card mt-6">
-        <h4 class="text-lg font-semibold mb-2">
+        <h4 class="section-title text-lg font-semibold mb-2">
           APIScan.io - AI-Powered API Security Scanner
         </h4>
 
-        <p class="text-sm text-gray-700 mb-4">
+        <p class="text-sm mb-4">
           SaaS platform that scans OpenAPI/Swagger specs, detects every
           <a href="https://owasp.org/www-project-api-security/" target="_blank" class="text-blue-600 hover:underline">
             OWASP API Top 10
@@ -357,30 +363,27 @@
   <!-- Contact Section -->
   <section id="contact" class="py-20 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
     <div class="max-w-xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12">Get In Touch</h2>
+      <h2 class="section-title text-4xl font-bold text-center mb-12">Get In Touch</h2>
       
       <form id="contact-form" action="#" method="POST" class="card p-8 space-y-6 transition-colors duration-500">
         <div>
-          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark">Name</label>
           <input type="text" id="name" name="name" required
             class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <label for="email" class="block text-sm font-medium text-text-light dark:text-text-dark">Email</label>
           <input type="email" id="email" name="email" required
             class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
         
         <div>
-          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+          <label for="message" class="block text-sm font-medium text-text-light dark:text-text-dark">Message</label>
           <textarea id="message" name="message" rows="4" required
-          class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          textarea>
+          class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
-      
-      </form>
-        <button type="submit" 
+        <button type="submit"
           class="w-full bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-smooth transition-all duration-300">
           Send Message
         </button>
