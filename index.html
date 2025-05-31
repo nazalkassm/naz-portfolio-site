@@ -15,18 +15,40 @@
 
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-  <header class="bg-white text-gray-900 p-8 text-center shadow-sm">
-    <img src="assets/portrait.jpg" alt="Naz Al Kassm" class="w-32 h-32 mx-auto rounded-full shadow-md mb-4">
-    <h1 class="text-3xl font-bold">Naz Al Kassm</h1>
-    <p class="text-sm text-gray-600 mt-2">IT Specialist • 🇨🇦 Federal Gov</p>
-    <nav class="mt-4 space-x-4">
-      <a href="#about" class="text-blue-600 hover:underline">About</a>
-      <a href="#portfolio" class="text-blue-600 hover:underline">Portfolio</a>
-      <a href="#hobbies" class="text-blue-600 hover:underline">Hobbies</a>
-      <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
-      <a href="cv.html" class="text-blue-600 hover:underline">CV</a>
-    </nav>
-  </header>
+<!-- ===== Hero Header ===== -->
+<header
+  class="relative isolate flex flex-col items-center justify-center
+         text-center text-white overflow-hidden"
+  style="height: 350px;"
+>
+  <!-- full-width background -->
+  <img
+    src="assets/hero.jpg"
+    alt="Naz Al Kassm working"
+    class="absolute inset-0 -z-10 h-full w-full object-cover"
+  />
+
+  <!-- semi-transparent overlay for readability -->
+  <div class="absolute inset-0 -z-10 bg-black/40"></div>
+
+  <!-- headline & subtitle -->
+  <h1 class="text-4xl sm:text-5xl font-bold drop-shadow-md">
+    Naz&nbsp;Al&nbsp;Kassm
+  </h1>
+  <p class="mt-2 text-lg sm:text-xl drop-shadow-md">
+    IT Specialist • 🇨🇦 Federal Gov
+  </p>
+
+  <!-- nav links -->
+  <nav class="mt-6 space-x-4">
+    <a href="#about"      class="hover:underline">About</a>
+    <a href="#portfolio"  class="hover:underline">Portfolio</a>
+    <a href="#hobbies"    class="hover:underline">Hobbies</a>
+    <a href="#contact"    class="hover:underline">Contact</a>
+    <a href="cv.html"     class="hover:underline">CV</a>
+  </nav>
+</header>
+
 
   <main class="max-w-4xl mx-auto p-6 space-y-12">
 
