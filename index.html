@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naz Al Kassm | Portfolio</title>
 
-  <!-- Flag Icons CSS for country flags -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@6.7.0/css/flag-icons.min.css">
-
   <!-- Load theme early to prevent flash -->
   <script>
     if (
@@ -23,36 +20,35 @@
 
   <!-- Tailwind CSS with dark mode -->
   <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                light: '#f9fafb',
-                dark: '#111827'
-              },
-              surface: {
-                light: '#ffffff',
-                dark: '#1f2937'
-              },
-              text: {
-                light: '#1f2937',
-                dark: '#f3f4f6'
-              }
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              light: '#f9fafb',
+              dark: '#111827'
             },
-            boxShadow: {
-              smooth: '0 4px 12px rgba(0, 0, 0, 0.1)',
-              smoothDark: '0 4px 12px rgba(0, 0, 0, 0.5)'
+            text: {
+              light: '#1f2937',
+              dark: '#f3f4f6'
             },
-            borderRadius: {
-              xl: '1rem'
+            surface: {
+              light: '#ffffff',
+              dark: '#1f2937'
             }
+          },
+          borderRadius: {
+            xl: '1rem'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
           }
         }
       }
-    </script>
+    }
+  </script>
 
   <style>
     html {
@@ -67,62 +63,14 @@
     * {
       transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
     }
-    body {
-      background-color: theme('colors.brand.light');
-      color: theme('colors.text.light');
-    }
-    .dark body {
-      background-color: theme('colors.brand.dark');
-      color: theme('colors.text.dark');
-    }
-    a {
-      color: theme('colors.blue.600');
-    }
-    .dark a {
-      color: theme('colors.blue.300');
-    }
-    .card {
-      background-color: theme('colors.surface.light');
-      color: theme('colors.text.light');
-      box-shadow: theme('boxShadow.smooth');
-      border-radius: theme('borderRadius.xl');
-      padding: 1.5rem;
-    }
-    .dark .card {
-      background-color: theme('colors.surface.dark');
-      color: theme('colors.text.dark');
-      box-shadow: theme('boxShadow.smoothDark');
-    }
-    .section-title {
-      color: theme('colors.text.light');
-    }
-    .dark .section-title {
-      color: theme('colors.text.dark');
-    }
   </style>
 </head>
 
 <body class="bg-brand-light dark:bg-brand-dark text-text-light dark:text-text-dark font-sans antialiased">
-
-  <!-- ===== Hero Header ===== -->
-  <header class="relative isolate flex flex-col items-center justify-center
-         text-center text-white overflow-hidden" style="height: 350px;">
-    <!-- full-width background -->
-    <img src="assets/hero.jpg" alt="Naz Al Kassm working" class="absolute inset-0 -z-10 h-full w-full object-cover" />
-
-    <!-- semi-transparent overlay for readability -->
-    <div class="absolute inset-0 -z-10 bg-black/40"></div>
-
-    <!-- headline & subtitle -->
-    <h1 class="text-4xl sm:text-5xl font-bold drop-shadow-md">
-      Naz&nbsp;Al&nbsp;Kassm
-    </h1>
-    <p class="mt-2 text-lg sm:text-xl drop-shadow-md">
-      IT Specialist • <span class="fi fi-ca"></span> Federal Gov
-    </p>
-
-    <!-- nav links -->
-    <nav class="mt-6 space-x-4">
+  <header class="text-center py-10">
+    <h1 class="text-3xl font-semibold">Naz Al Kassm</h1>
+    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">IT Specialist • 🇨🇦 Federal Gov</p>
+    <nav class="mt-4 space-x-4 text-sm text-gray-700 dark:text-gray-300">
       <a href="#about" class="hover:underline">About</a>
       <a href="#portfolio" class="hover:underline">Portfolio</a>
       <a href="#hobbies" class="hover:underline">Hobbies</a>
@@ -131,290 +79,83 @@
     </nav>
   </header>
 
-
-  <main class="max-w-4xl mx-auto p-6 space-y-12">
-
+  <main class="max-w-2xl mx-auto px-4 space-y-16">
     <section id="about">
-      <h2 class="section-title text-xl font-semibold mb-2">About</h2>
-      <p>
-        Naz Al Kassm is an experienced IT professional specializing in IT change requests business analysis, and full
-        stack application development with the Canadian public sector.
-        He currently works at Immigration, Refugees and Citizenship Canada (IRCC) as a programmer to support the Digital
-        Platform Modernization (DPM) programme.
-        Naz also serves part-time with the Department of National Defence (DND), supporting secure network
-        infrastructure and information systems.
+      <h2 class="text-xl font-semibold mb-2">About</h2>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Naz Al Kassm is an experienced IT professional specializing in IT change requests,
+        business analysis, and full-stack development with the Canadian public sector. He works at IRCC supporting the Digital Platform Modernization programme
+        and part-time with DND supporting secure network infrastructure.
       </p>
-      <p class="mt-4">
-        With a background in computer science and a strong foundation in human-computer interaction, Naz bridges the gap
-        between users and systems.
-        His work spans requirements gathering, full-stack development, data analysis and visualization, and UX design.
-        He is committed to creating efficient, secure, and user-centered solutions for government services.
-      </p>
-      <ul class="mt-4 list-disc list-inside space-y-1 text-sm">
-        <li>🎓 Master's in Computer Science (HCI), Carleton University</li>
-        <li>💼 IT Analyst at IRCC, focused on application development and change delivery</li>
-        <li>🛡️ Comminucations and Infrastructure Specialist with the Department of National Defence</li>
-        <li>📊 Data visualization, reporting, and executive infographics</li>
-        <li>🧠 Virtual Reality development and HCI research at Carleton University</li>
+      <ul class="mt-4 list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+        <li>Master's in Computer Science (HCI), Carleton University</li>
+        <li>IT Analyst at IRCC</li>
+        <li>Communications & Infrastructure Specialist at DND</li>
+        <li>Data visualization & executive reporting</li>
+        <li>VR development and HCI research</li>
       </ul>
     </section>
 
-    <section id="portfolio" class="pt-10">
-      <h2 class="section-title text-2xl font-bold border-b pb-2 mb-6">Projects & Work</h2>
+    <section id="portfolio">
+      <h2 class="text-xl font-semibold border-b pb-2 mb-6">Projects & Work</h2>
 
-      <!-- IRCC Projects -->
-      <h3 class="section-title text-xl font-semibold mb-4 mt-8">IRCC Projects</h3>
-      <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Salesforce Full-Stack Development (CXP) -->
-        <div class="card transition-colors duration-300">
-
-          <h4 class="section-title text-lg font-semibold mb-2">
-            Salesforce Full-Stack Development&nbsp;– CXP
-          </h4>
-          <p class="text-sm mb-2">
-            Building the new Customer&nbsp;Experience&nbsp;Platform: Lightning Web Components on
-            the front-end, Apex &amp; Integration Procedures on the back-end, and real-time
-            APIs to GCMS.
+      <div class="space-y-6">
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <h3 class="text-lg font-medium mb-1">Salesforce Full-Stack Development – CXP</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Built Lightning Web Components, Apex backends, and real-time integrations for the GCMS platform.
           </p>
-
-          <!-- skill tags -->
-          <span
-            class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Lightning&nbsp;Web&nbsp;Components</span>
-          <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-1 mb-1">Apex</span>
-          <span
-            class="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1 mb-1">Integration&nbsp;Procedures</span>
-          <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">SOQL</span>
-          <span class="inline-block text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded mr-1 mb-1">REST&nbsp;API</span>
-          <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mb-1">Full-Stack</span>
         </div>
 
-        <!-- Digital Credentials Pilot (DPM3) -->
-        <div class="card transition-colors duration-300">
-
-          <h4 class="section-title text-lg font-semibold mb-2">Digital Credentials Pilot</h4>
-          <p class="text-sm mb-2">
-            Create user workflows and user stories for the
-            <span class="whitespace-nowrap">DPM3&nbsp;digital-credential</span> pilot project.
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <h3 class="text-lg font-medium mb-1">Digital Credentials Pilot</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Defined user workflows and wrote user stories for the IRCC digital-credential pilot project.
           </p>
-          <span class="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1 mb-1">Agile</span>
-          <span
-            class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">User&nbsp;Stories</span>
-          <span
-            class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">Workflow&nbsp;Design</span>
-          <span
-            class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mb-1">Stakeholder&nbsp;Engagement</span>
         </div>
 
-        <!-- Permanent Residence (PR) Fees Change -->
-        <div class="card transition-colors duration-300">
-
-          <h4 class="section-title text-lg font-semibold mb-2">
-            Permanent Residence & CBSA &nbsp;Fees Change
-          </h4>
-          <p class="text-sm mb-2">
-            Led requirements workshops and coordinated urgent updates across GCMS, payment
-            portals, and web channels to implement government-mandated fee changes on an
-            accelerated timeline.
+        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <h3 class="text-lg font-medium mb-1">Permanent Residence & CBSA Fees Change</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Led business workshops and delivery coordination for urgent fee structure updates.
           </p>
-
-          <!-- skill tags -->
-          <span
-            class="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1 mb-1">Business&nbsp;Analysis</span>
-          <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">GCMS</span>
-          <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded mr-1 mb-1">Change&nbsp;Mgmt</span>
-          <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Stakeholders</span>
-          <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded mb-1">UAT</span>
-        </div>
-
-        <!-- Card: Pearson Integration -->
-        <div class="card transition-colors duration-300">
-
-          <h4 class="section-title text-lg font-semibold mb-2">Pearson Integration</h4>
-          <p class="text-sm mb-2">Integrated new test provider into GCMS systems with stakeholder
-            coordination.</p>
-          <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">GCMS</span>
-          <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Business Analysis</span>
         </div>
       </div>
-      <!-- Card: CBSA Removals -->
-      <!-- Card: Other Change Requests -->
-      <!-- Card: Department Wide Survey -->
-      <!-- Card: Graphic Design & Infographics -->
-      <!-- Card: Excel Dashboards -->
+    </section>
 
-      <!-- DND Work -->
-      <h3 class="section-title text-xl font-semibold mb-4 mt-10">DND Projects</h3>
-      <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <div class="card transition-colors duration-300">
+    <section id="hobbies">
+      <h2 class="text-xl font-semibold border-b pb-2 mb-4">Hobbies & Interests</h2>
+      <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+        <li>Gym, Fitness & Sauna recovery</li>
+        <li>Swimming & Outdoor running</li>
+        <li>Chess & Cybersecurity training</li>
+        <li>Spending time with family & travelling</li>
+      </ul>
+    </section>
 
-          <h4 class="section-title text-lg font-semibold mb-2">Communications & IT infrastructure</h4>
-          <p class="text-sm mb-2">Operate secure radio, satellite, and computer networks</p>
-          <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Networking</span>
-          <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">Security</span>
-          <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">ITIL
-            Foundation</span>
-          <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Linux Essentials</span>
-        </div>
-      </div>
-
-      <!-- Research & Fun Projects -->
-      <h3 class="section-title text-xl font-semibold mb-4 mt-10">Research Work</h3>
-      <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
-      <div class="card transition-colors duration-300">
-
-        <h4 class="section-title text-lg font-semibold mb-2">VR Development</h4>
-        <p class="text-sm mb-2">Built full-stack VR applications for user interaction research at
-          Carleton.</p>
-        <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Unity</span>
-        <span class="inline-block text-xs bg-red-100 text-indigo-800 px-2 py-1 rounded">C#</span>
-      </div>
-      <!-- Card: APIScan.io with accordion -->
-      <div class="card mt-6">
-        <h4 class="section-title text-lg font-semibold mb-2">
-          APIScan.io - AI-Powered API Security Scanner
-        </h4>
-
-        <p class="text-sm mb-4">
-          SaaS platform that scans OpenAPI/Swagger specs, detects every
-          <a href="https://owasp.org/www-project-api-security/" target="_blank" class="text-blue-600 hover:underline">
-            OWASP API Top 10
-          </a>
-          issue, and explains risks in plain language.
-        </p>
-
-        <!-- Tech badges -->
-        <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Python /
-          FastAPI</span>
-        <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">HTMX</span>
-        <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">GPT-4</span>
-        <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded mr-1 mb-1">OWASP ZAP</span>
-        <span class="inline-block text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded mr-1 mb-1">SQLAlchemy</span>
-        <span class="inline-block text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded mb-1">ReportLab</span>
-        <span class="inline-block text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded mr-1 mb-1">Git</span>
-        <span class="inline-block text-xs bg-violet-100 text-violet-800 px-2 py-1 rounded mr-1 mb-1">SQLAlchemy</span>
-        <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Kali Linux</span>
-        <span class="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1 mb-1">Cloud/ EC2 AWS</span>
-        <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded mr-1 mb-1">Docker</span>
-
-        <!-- Accordion trigger -->
-        <button class="mt-4 text-sm text-blue-600 hover:underline focus:outline-none" hx-on="click:
-      const d = document.getElementById('apiscan-details');
-      d.classList.toggle('hidden');
-      this.textContent = d.classList.contains('hidden') ? 'Show details' : 'Hide details';
-    ">
-          Show details
-        </button>
-
-        <!-- Details (hidden by default) -->
-        <div id="apiscan-details" class="hidden mt-4 text-sm space-y-6">
-
-          <!-- Key Achievements -->
-          <div>
-            <h5 class="font-semibold mb-2">Key Achievements</h5>
-            <ul class="list-disc list-inside space-y-1">
-              <li>Dual-mode scanner (static + dynamic ZAP) — 100 % OWASP API Top 10 coverage.</li>
-              <li>GPT-4 generates audience-aware explanations (developers ↔ CISOs).</li>
-              <li>Free / Pro / Enterprise tiers with usage billing &amp; IP allow-listing.</li>
-              <li>Session auth, bcrypt hashing, full audit logging.</li>
-              <li>Real-time HTMX UI + PDF &amp; CSV export.</li>
-            </ul>
-          </div>
-
-          <!-- Technical Highlights -->
-          <div>
-            <h5 class="font-semibold mb-2">Technical Highlights</h5>
-            <ul class="list-disc list-inside space-y-1">
-              <li>95 %+ test coverage with <code>pytest</code>.</li>
-              <li>Rate-limiting, CAPTCHA, email verification.</li>
-              <li>Feature-flag system for safe rollout &amp; A/B testing.</li>
-            </ul>
-          </div>
-
-          <!-- Business Impact -->
-          <div>
-            <h5 class="font-semibold mb-2">Business Impact</h5>
-            <ul class="list-disc list-inside space-y-1">
-              <li>Cuts assessment time from hours to minutes.</li>
-              <li>One-click PDF reports for auditors.</li>
-              <li>AI explanations let non-technical teams grasp risk fast.</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="hobbies" class="py-16 px-4">
-  <div class="card max-w-3xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Hobbies & Passions</h2>
-    <ul class="list-disc list-inside space-y-2 text-gray-800 dark:text-gray-200">
-      <li>🏋️ Gym & Fitness</li>
-      <li>🌊 Swimming & Sauna recovery rituals</li>
-      <li>♟ Chess & Cybersecurity (ITIL, Power BI... working on CCNA)</li>
-      <li>👨‍👩‍👧 Family & travel — soon: 🇩🇰 Copenhagen with the crew</li>
-    </ul>
-  </div>
-</section>
-
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-    <div class="max-w-xl mx-auto">
-      <h2 class="section-title text-4xl font-bold text-center mb-12">Get In Touch</h2>
-      
-      <form id="contact-form" action="#" method="POST" class="card p-8 space-y-6 transition-colors duration-500">
-        <div>
-          <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark">Name</label>
-          <input type="text" id="name" name="name" required
-            class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-        
-        <div>
-          <label for="email" class="block text-sm font-medium text-text-light dark:text-text-dark">Email</label>
-          <input type="email" id="email" name="email" required
-            class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-        
-        <div>
-          <label for="message" class="block text-sm font-medium text-text-light dark:text-text-dark">Message</label>
-          <textarea id="message" name="message" rows="4" required
-          class="mt-1 block w-full bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-        </div>
+    <section id="contact">
+      <h2 class="text-xl font-semibold border-b pb-2 mb-4">Contact</h2>
+      <form id="contact-form" class="space-y-4">
+        <input type="text" name="name" placeholder="Your Name"
+          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100" />
+        <input type="email" name="email" placeholder="Your Email"
+          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100" />
+        <textarea name="message" rows="4" placeholder="Your Message"
+          class="w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-800 dark:text-gray-100"></textarea>
         <button type="submit"
-          class="w-full bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-smooth transition-all duration-300">
-          Send Message
-        </button>
+          class="w-full bg-gray-900 dark:bg-white text-white dark:text-black rounded px-4 py-2 text-sm font-medium hover:opacity-90">Send</button>
       </form>
-      
-      <div class="mt-8 text-center">
-        <p class="text-gray-600 dark:text-gray-400">Or connect with me on</p>
-        <a href="https://linkedin.com/in/naz-mokhamed-al-kassm-785407251/" 
-          class="inline-block mt-2 text-blue-600 dark:text-blue-400 hover:underline">
-          LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white dark:bg-gray-800 shadow-smooth dark:shadow-smoothDark py-8 transition-colors duration-500">
-    <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
-      <p>&copy; 2025 Naz Al Kassm. All rights reserved.</p>
-    </div>
-  </footer>
+    </section>
+  </main>
 
   <!-- Dark Mode Toggle Button -->
-<button id="theme-toggle" aria-label="Toggle Dark Mode"
-  class="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white
-         rounded-full p-3 shadow-md hover:shadow-lg transition duration-300">
-  <span id="theme-icon" class="text-2xl">🌙</span>
-</button>
+  <button id="theme-toggle" aria-label="Toggle Dark Mode"
+    class="fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white
+           rounded-full p-3 shadow-md hover:shadow-lg transition duration-300">
+    <span id="theme-icon" class="text-2xl">🌙</span>
+  </button>
 
-
-  <!-- Theme Toggle Logic -->
+  <!-- Theme Toggle Script -->
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const icon = document.getElementById('theme-icon');
@@ -437,18 +178,6 @@
       setTheme(isDark ? 'light' : 'dark');
     });
   </script>
-
-  <!-- HTMX + Twemoji -->
-  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    if (typeof twemoji !== 'undefined') {
-      twemoji.parse(document.body);
-    } else {
-      console.warn('twemoji is not defined. Emoji parsing skipped.');
-    }
-  });
-</script>
 </body>
+
 </html>
