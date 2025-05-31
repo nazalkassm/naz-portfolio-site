@@ -56,6 +56,14 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
   </style>
+  <style>
+    @layer utilities {
+      @keyframes wing {
+        0%,100% { transform: scale(1)   rotate(0deg); }
+        50%     { transform: scale(1.15) rotate(6deg); }
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-brand-light dark:bg-brand-dark text-text-light dark:text-text-dark font-sans antialiased">
@@ -85,8 +93,26 @@
       <a href="#contact" class="hover:underline">Contact</a>
       <a href="cv.html" class="hover:underline">CV</a>
     </nav>
+    <!-- Butterfly Easter Egg (tiny speck) -->
+    <div id="butterfly-egg"
+         class="absolute top-8 right-10 w-0.5 h-0.5 bg-black/30 cursor-pointer overflow-visible">
+      <svg class="scale-0 transition-all duration-500"
+           viewBox="0 0 120 120" width="64" height="64"
+           fill="none" stroke="rgb(255,189,248)" stroke-width="3">
+        <path d="M60 60 Q30 20 10 60 Q30 100 60 60
+                 M60 60 Q90 20 110 60 Q90 100 60 60"/>
+      </svg>
+    </div>
   </header>
-
+  <script>
+    const egg = document.getElementById('butterfly-egg');
+    const svg = egg?.querySelector('svg');
+    egg?.addEventListener('mouseenter', () => {
+      svg.classList.remove('scale-0');
+      svg.classList.add('animate-[wing_1.8s_ease-in-out_1]');
+      setTimeout(() => svg.classList.add('opacity-0'), 1800);
+    });
+  </script>
 
   <main class="max-w-4xl mx-auto p-6 space-y-12">
 
