@@ -456,6 +456,28 @@
   });
 </script>
 
+  <img id="luna-moon"
+       src="/icons/crescent.svg"
+       class="hidden fixed left-1/2 -translate-x-1/2 top-0 w-12 opacity-0
+              transition-transform duration-700">
+
+  <script>
+    const moon    = document.getElementById('luna-moon');
+    const showMoon = () => {
+      moon.classList.remove('hidden');
+      moon.style.transform = 'translate(-50%, 8rem)';
+      moon.style.opacity   = '0.9';
+      setTimeout(() => {
+        moon.style.transform = 'translate(-50%, -6rem)';
+        moon.style.opacity   = '0';
+        setTimeout(() => moon.classList.add('hidden'), 700);
+      }, 5000);
+    };
+    document.addEventListener('keydown', e => {
+      if (e.altKey && e.key.toLowerCase() === 'l') showMoon();
+    });
+  </script>
+
 </body>
 
 </html>
