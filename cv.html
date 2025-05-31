@@ -1,251 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naz Al Kassm - CV</title>
-    <style>
-        body {
-            font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 8.5in;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .contact {
-            text-align: center;
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-size: 28px;
-        }
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            margin-top: 25px;
-            font-size: 18px;
-        }
-        h3 {
-            margin-bottom: 5px;
-            color: #2980b9;
-            font-size: 16px;
-        }
-        .job-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .job-duration {
-            color: #555;
-            font-style: italic;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        ul {
-            margin-top: 5px;
-            margin-bottom: 15px;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            padding-left: 0;
-            list-style-type: none;
-        }
-        .skills-list li {
-            background-color: #f0f7ff;
-            padding: 5px 10px;
-            margin: 5px;
-            border-radius: 3px;
-            font-size: 14px;
-            border: 1px solid #d9e8f6;
-        }
-        .references {
-            text-align: center;
-            font-style: italic;
-            margin-top: 30px;
-            color: #555;
-        }
-        @media print {
-            body {
-                background: white;
-                color: black;
-                font-size: 12pt;
-                margin: 0;
-                padding: 0;
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naz Al Kassm - CV</title>
 
-            .no-print {
-                display: none !important;
-            }
+  <!-- Load theme early to prevent flash -->
+  <script>
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
 
-            * {
-                box-shadow: none !important;
-                background: transparent !important;
-                color: black !important;
-            }
-
-            a {
-                color: black !important;
-                text-decoration: none;
-            }
-
-            html, body {
-                width: 100%;
-                height: 100%;
-            }
-
-            h1, h2, h3 {
-                page-break-after: avoid;
-            }
-
-            p, ul, li {
-                page-break-inside: avoid;
-            }
-
-            @page {
-                size: A4;
-                margin: 1in;
-            }
+  <!-- Tailwind CSS with dark mode -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { light: '#f9fafb', dark: '#111827' },
+            surface: { light: '#ffffff', dark: '#1f2937' },
+            text: { light: '#1f2937', dark: '#f3f4f6' }
+          },
+          boxShadow: {
+            smooth: '0 4px 12px rgba(0,0,0,0.1)',
+            smoothDark: '0 4px 12px rgba(0,0,0,0.5)'
+          },
+          borderRadius: { xl: '1rem' }
         }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    #theme-icon { transition: transform 0.5s ease; }
+    #theme-icon.rotate { transform: rotate(180deg); }
+    * { transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease; }
+    body { background-color: theme('colors.brand.light'); color: theme('colors.text.light'); }
+    .dark body { background-color: theme('colors.brand.dark'); color: theme('colors.text.dark'); }
+    a { color: theme('colors.blue.600'); }
+    .dark a { color: theme('colors.blue.300'); }
+    .card { background-color: theme('colors.surface.light'); color: theme('colors.text.light'); box-shadow: theme('boxShadow.smooth'); border-radius: theme('borderRadius.xl'); padding: 1.5rem; }
+    .dark .card { background-color: theme('colors.surface.dark'); color: theme('colors.text.dark'); box-shadow: theme('boxShadow.smoothDark'); }
+
+    /* Print styles */
+    @media print {
+      body { background: white; color: black; font-size: 12pt; margin: 0; padding: 0; }
+      .no-print { display: none !important; }
+      * { box-shadow: none !important; background: transparent !important; color: black !important; }
+      a { color: black !important; text-decoration: none; }
+      html, body { width: 100%; height: 100%; }
+      h1, h2, h3 { page-break-after: avoid; }
+      p, ul, li { page-break-inside: avoid; }
+      @page { size: A4; margin: 1in; }
+    }
+  </style>
 </head>
-<body>
-    <div class="no-print" style="text-align: center; margin-top: 1rem; margin-bottom: 1.5rem;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-            <a href="index.html" style="padding: 0.5rem 1rem; background-color: #374151; color: white; font-size: 0.875rem; border-radius: 0.25rem; text-decoration: none;">
-                ← Back to Website
-            </a>
-            <button onclick="downloadPDF()" style="padding: 0.5rem 1rem; background-color: #1e40af; color: white; font-size: 0.875rem; border-radius: 0.25rem; border: none; cursor: pointer;">
-                ⬇ Download PDF
-            </button>
-        </div>
+<body class="bg-brand-light dark:bg-brand-dark text-text-light dark:text-text-dark font-sans antialiased">
+  <!-- Navigation and actions -->
+  <div class="no-print text-center my-6">
+    <div class="flex flex-col items-center gap-2">
+      <a href="index.html" class="px-4 py-2 rounded bg-gray-700 text-white text-sm">← Back to Website</a>
+      <button onclick="downloadPDF()" class="px-4 py-2 rounded bg-blue-800 text-white text-sm">⬇ Download PDF</button>
     </div>
+  </div>
 
-    <div class="header">
-        <h1>Naz Al Kassm</h1>
-        <div class="job-title">Application Developer | Business Analyst | IT Communications Infrastructure </div>
-    </div>
-
-    <div class="contact">
-        LinkedIn: linkedin.com/in/naz-mokhamed-al-kassm-785407251/
-    </div>
+  <main class="max-w-3xl mx-auto p-6 space-y-6">
+    <header class="text-center space-y-2">
+      <h1 class="text-3xl font-bold">Naz Al Kassm</h1>
+      <div class="font-semibold">Application Developer | Business Analyst | IT Communications Infrastructure</div>
+      <div class="text-sm text-gray-600 dark:text-gray-400">LinkedIn: linkedin.com/in/naz-mokhamed-al-kassm-785407251/</div>
+    </header>
 
     <p>
-        Dynamic and versatile IT professional with 5+ years of experience leading full stack development, business analysis, and digital transformation initiatives in the Canadian public sector. Skilled in delivering high-impact solutions, optimizing IT systems, and integrating secure technologies. Currently building modern digital services at IRCC while serving as a part-time Information Systems Specialist with DND.
+      Dynamic and versatile IT professional with 5+ years of experience leading full stack development, business analysis, and digital transformation initiatives in the Canadian public sector. Skilled in delivering high-impact solutions, optimizing IT systems, and integrating secure technologies. Currently building modern digital services at IRCC while serving as a part-time Information Systems Specialist with DND.
     </p>
 
-    <h2>SKILLS</h2>
-    <ul class="skills-list">
-        <li>Business Analysis & Agile Delivery</li>  
-        <li>Full Stack Development (C#, JavaScript, Salesforce)</li>
-        <li>Change Management & UAT</li>
-        <li>Salesforce Platform Developer</li>
-        <li>Power BI & Data Visualization</li>
-        <li>ITIL 4 Service Management</li>
-        <li>Cloud & Network Security</li>
-        <li>UX/UI Design & HCI</li>
-        <li>Technical Documentation & Stakeholder Engagement</li>
-        <li>VR Research & Immersive Interfaces</li>
-    </ul>
+    <section>
+      <h2 class="text-xl font-semibold border-b-2 border-blue-600 pb-1 mt-6">SKILLS</h2>
+      <ul class="skills-list list-none flex flex-wrap pl-0">
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Business Analysis & Agile Delivery</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Full Stack Development (C#, JavaScript, Salesforce)</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Change Management & UAT</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Salesforce Platform Developer</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Power BI & Data Visualization</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">ITIL 4 Service Management</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Cloud & Network Security</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">UX/UI Design & HCI</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">Technical Documentation & Stakeholder Engagement</li>
+        <li class="m-1 px-2 py-1 bg-blue-50 dark:bg-blue-900/50 text-sm rounded border border-blue-200">VR Research & Immersive Interfaces</li>
+      </ul>
+    </section>
 
-    <h2>WORK EXPERIENCE</h2>
-    <h3>Application Developer | Immigration, Refugees and Citizenship Canada (IRCC)</h3>
-    <div class="job-duration">Mar 2025 – Present</div>
-    <ul>
+    <section>
+      <h2 class="text-xl font-semibold border-b-2 border-blue-600 pb-1 mt-6">WORK EXPERIENCE</h2>
+      <h3 class="mt-4 font-semibold">Application Developer | Immigration, Refugees and Citizenship Canada (IRCC)</h3>
+      <div class="italic text-sm mb-2">Mar 2025 – Present</div>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Develop and maintain digital applications using Salesforce and JavaScript to enhance IRCC’s service delivery and GCMS integration.</li>
         <li>Performed backend Salesforce application development by creating Integration Procedures to fetch and save information to the Salesforce database, enabling front-end components to access necessary data.</li>
-    </ul>
+      </ul>
 
-    <h3>IT Business Analyst | IRCC – Digital Strategy Services</h3>
-    <div class="job-duration">Jun 2023 – Mar 2025</div>
-    <ul>
+      <h3 class="font-semibold">IT Business Analyst | IRCC – Digital Strategy Services</h3>
+      <div class="italic text-sm mb-2">Jun 2023 – Mar 2025</div>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Gathered requirements and produced user stories for fee automation, GCMS credential flows, and DPM3 pilot implementation.</li>
         <li>Led implementation of PR Fees Change and Pearson integration, reducing manual work by 30% and improving stakeholder satisfaction.</li>
         <li>Managed Azure DevOps backlog and sprint boards while coordinating with cross-functional stakeholders.</li>
-    </ul>
+      </ul>
 
-    <h3>Information Systems Specialist | Department of National Defence (Part-Time)</h3>
-    <div class="job-duration">Mar 2025 – Present</div>
-    <ul>
+      <h3 class="font-semibold">Information Systems Specialist | Department of National Defence (Part-Time)</h3>
+      <div class="italic text-sm mb-2">Mar 2025 – Present</div>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Supports secure military IT infrastructure and performs vulnerability assessments on communication systems.</li>
         <li>Leads deployments of resilient and secure network architecture for mission-critical operations.</li>
-    </ul>
+      </ul>
 
-    <h3>Project Analyst | IRCC – Enterprise Project Management Office</h3>
-    <div class="job-duration">Aug 2021 – Jun 2023</div>
-    <ul>
+      <h3 class="font-semibold">Project Analyst | IRCC – Enterprise Project Management Office</h3>
+      <div class="italic text-sm mb-2">Aug 2021 – Jun 2023</div>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Provided reporting for over 50 IRCC projects submitted to Treasury Board Secretariat using Power BI dashboards.</li>
         <li>Optimized internal data access and project tracking performance through iterative systems enhancements.</li>
-    </ul>
+      </ul>
 
-    <h3>Data Analyst | IRCC – Refugee Affairs</h3>
-    <div class="job-duration">Jul 2020 – Jul 2021</div>
-    <ul>
+      <h3 class="font-semibold">Data Analyst | IRCC – Refugee Affairs</h3>
+      <div class="italic text-sm mb-2">Jul 2020 – Jul 2021</div>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Created executive-level dashboards and infographics to communicate operational insights and performance metrics.</li>
         <li>Streamlined manual processes through automation and improved reporting clarity using visual storytelling.</li>
-    </ul>
+      </ul>
 
-    <h3>VR Developer | Creative Interactions Lab – Carleton University</h3>
-    <div class="job-duration">Sep 2019 – Sep 2022</div>
-    <ul>
+      <h3 class="font-semibold">VR Developer | Creative Interactions Lab – Carleton University</h3>
+      <div class="italic text-sm mb-2">Sep 2019 – Sep 2022</div>
+      <ul class="list-disc list-inside space-y-1">
         <li>Developed Unity-based VR apps integrating Google Forms and immersive user interface techniques.</li>
         <li>Contributed to research on spatial interaction and published HCI findings in collaborative projects.</li>
-    </ul>
+      </ul>
+    </section>
 
-    <h2>EDUCATION</h2>
-    <ul>
+    <section>
+      <h2 class="text-xl font-semibold border-b-2 border-blue-600 pb-1 mt-6">EDUCATION</h2>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Master of Computer Science (Human-Computer Interaction), Carleton University, 2022</li>
         <li>Bachelor of Computer Science (AI Stream), Carleton University, 2018</li>
-    </ul>
+      </ul>
+    </section>
 
-    <h2>CERTIFICATIONS</h2>
-    <ul>
+    <section>
+      <h2 class="text-xl font-semibold border-b-2 border-blue-600 pb-1 mt-6">CERTIFICATIONS</h2>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>ITIL 4 Foundations Certification – Axelos</li>
         <li>Microsoft Certified: Power BI Data Analyst Associate</li>
         <li>Introduction to Managing Projects – Algonquin College</li>
         <li>Salesforce Platform Developer I – In Progress</li>
         <li>CBAP – In Progress</li>
-    </ul>
+      </ul>
+    </section>
 
-    <h2>LANGUAGES</h2>
-    <ul>
+    <section>
+      <h2 class="text-xl font-semibold border-b-2 border-blue-600 pb-1 mt-6">LANGUAGES</h2>
+      <ul class="list-disc list-inside space-y-1 mb-4">
         <li>Fluent in English and Arabic</li>
         <li>Strong base in Russian</li>
         <li>Training in French</li>
-    </ul>
+      </ul>
+    </section>
 
-    <div class="references">
-        References available upon request.
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script>
-      function downloadPDF() {
-        const element = document.body.cloneNode(true);
-        element.querySelector('.no-print')?.remove();
+    <div class="references italic text-center">References available upon request.</div>
+  </main>
 
-        html2pdf()
-          .set({
-            margin: 0.5,
-            filename: 'Naz_Al_Kassm_CV.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-          })
-          .from(element)
-          .save();
-      }
-    </script>
+  <!-- Dark Mode Toggle Button (sync with index.html) -->
+  <button id="theme-toggle" aria-label="Toggle Dark Mode" class="no-print fixed bottom-6 right-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-full p-3 shadow-md hover:shadow-lg transition duration-300">
+    <span id="theme-icon" class="text-2xl">🌙</span>
+  </button>
+
+  <!-- Theme Toggle Logic -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+
+    function setTheme(mode) {
+      document.documentElement.classList.toggle('dark', mode === 'dark');
+      localStorage.theme = mode;
+      icon.textContent = mode === 'dark' ? '🌞' : '🌙';
+      icon.classList.add('rotate');
+      setTimeout(() => icon.classList.remove('rotate'), 500);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      icon.textContent = isDark ? '🌞' : '🌙';
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    function downloadPDF() {
+      const element = document.body.cloneNode(true);
+      element.querySelector('.no-print')?.remove();
+
+      html2pdf()
+        .set({
+          margin: 0.5,
+          filename: 'Naz_Al_Kassm_CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        })
+        .from(element)
+        .save();
+    }
+  </script>
 </body>
 </html>
