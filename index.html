@@ -410,7 +410,13 @@
   <!-- Footer -->
   <footer class="bg-white dark:bg-gray-800 shadow-smooth dark:shadow-smoothDark py-8 transition-colors duration-500">
     <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
-      <p>&copy; 2025 Naz Al Kassm. All rights reserved.</p>
+      <p class="inline-flex items-center gap-2 justify-center">
+        <!-- Luna trigger -->
+        <span id="luna-trigger" class="cursor-pointer select-none">🌙</span>
+        &copy; 2025 Naz Al Kassm. All rights reserved.
+        <!-- Butterfly trigger -->
+        <span id="butterfly-trigger" class="cursor-pointer select-none">🦋</span>
+      </p>
     </div>
   </footer>
 
@@ -454,7 +460,33 @@
       console.warn('twemoji is not defined. Emoji parsing skipped.');
     }
   });
-</script>
+  </script>
+
+  <!-- Hidden family photo overlay -->
+  <img id="family-easter"
+       src="assets/family.png"
+       class="hidden fixed bottom-24 right-8 w-60 rounded-xl shadow-lg
+              opacity-0 scale-90 transition-all duration-700 z-50" />
+
+  <script>
+    const pic   = document.getElementById('family-easter');
+    const show  = () => {
+      pic.classList.remove('hidden');
+      setTimeout(() => {
+        pic.style.opacity = '1';
+        pic.style.transform = 'scale(1)';
+      }, 20);                       // allow repaint
+      // hide again after 6 s
+      setTimeout(() => {
+        pic.style.opacity = '0';
+        pic.style.transform = 'scale(0.9)';
+        setTimeout(() => pic.classList.add('hidden'), 700);
+      }, 6000);
+    };
+
+    document.getElementById('luna-trigger')     ?.addEventListener('click', show);
+    document.getElementById('butterfly-trigger')?.addEventListener('click', show);
+  </script>
 
   <img id="luna-moon"
        src="/icons/crescent.svg"
