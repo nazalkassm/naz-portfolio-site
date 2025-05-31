@@ -54,6 +54,14 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
   </style>
+  <style>
+    @layer utilities {
+      @keyframes wing {
+        0%,100% { transform: scale(1)   rotate(0deg); }
+        50%     { transform: scale(1.15) rotate(6deg); }
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-brand-light dark:bg-brand-dark text-text-light dark:text-text-dark font-sans antialiased">
@@ -83,8 +91,26 @@
       <a href="#contact" class="text-white hover:underline">Contact</a>
       <a href="cv.html" class="text-white hover:underline">CV</a>
     </nav>
+    <!-- Butterfly Easter Egg (tiny speck) -->
+    <div id="butterfly-egg"
+         class="absolute top-8 right-10 w-0.5 h-0.5 bg-black/30 cursor-pointer overflow-visible">
+      <svg class="scale-0 transition-all duration-500"
+           viewBox="0 0 120 120" width="64" height="64"
+           fill="none" stroke="rgb(255,189,248)" stroke-width="3">
+        <path d="M60 60 Q30 20 10 60 Q30 100 60 60
+                 M60 60 Q90 20 110 60 Q90 100 60 60"/>
+      </svg>
+    </div>
   </header>
-
+  <script>
+    const egg = document.getElementById('butterfly-egg');
+    const svg = egg?.querySelector('svg');
+    egg?.addEventListener('mouseenter', () => {
+      svg.classList.remove('scale-0');
+      svg.classList.add('animate-[wing_1.8s_ease-in-out_1]');
+      setTimeout(() => svg.classList.add('opacity-0'), 1800);
+    });
+  </script>
 
   <main class="max-w-4xl mx-auto p-6 space-y-12">
 
@@ -384,7 +410,13 @@
   <!-- Footer -->
   <footer class="bg-white dark:bg-gray-800 shadow-smooth dark:shadow-smoothDark py-8 transition-colors duration-500">
     <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
-      <p>&copy; 2025 Naz Al Kassm. All rights reserved.</p>
+      <p class="inline-flex items-center gap-2 justify-center">
+        <!-- Luna trigger -->
+        <span id="luna-trigger" class="cursor-pointer select-none">🌙</span>
+        &copy; 2025 Naz Al Kassm. All rights reserved.
+        <!-- Butterfly trigger -->
+        <span id="butterfly-trigger" class="cursor-pointer select-none">🦋</span>
+      </p>
     </div>
   </footer>
 
@@ -428,7 +460,55 @@
       console.warn('twemoji is not defined. Emoji parsing skipped.');
     }
   });
-</script>
+  </script>
+
+  <!-- Hidden family photo overlay -->
+  <img id="family-easter"
+       src="assets/family.png"
+       class="hidden fixed bottom-24 right-8 w-60 rounded-xl shadow-lg
+              opacity-0 scale-90 transition-all duration-700 z-50" />
+
+  <script>
+    const pic   = document.getElementById('family-easter');
+    const show  = () => {
+      pic.classList.remove('hidden');
+      setTimeout(() => {
+        pic.style.opacity = '1';
+        pic.style.transform = 'scale(1)';
+      }, 20);                       // allow repaint
+      // hide again after 6 s
+      setTimeout(() => {
+        pic.style.opacity = '0';
+        pic.style.transform = 'scale(0.9)';
+        setTimeout(() => pic.classList.add('hidden'), 700);
+      }, 6000);
+    };
+
+    document.getElementById('luna-trigger')     ?.addEventListener('click', show);
+    document.getElementById('butterfly-trigger')?.addEventListener('click', show);
+  </script>
+
+  <img id="luna-moon"
+       src="/icons/crescent.svg"
+       class="hidden fixed left-1/2 -translate-x-1/2 top-0 w-12 opacity-0
+              transition-transform duration-700">
+
+  <script>
+    const moon    = document.getElementById('luna-moon');
+    const showMoon = () => {
+      moon.classList.remove('hidden');
+      moon.style.transform = 'translate(-50%, 8rem)';
+      moon.style.opacity   = '0.9';
+      setTimeout(() => {
+        moon.style.transform = 'translate(-50%, -6rem)';
+        moon.style.opacity   = '0';
+        setTimeout(() => moon.classList.add('hidden'), 700);
+      }, 5000);
+    };
+    document.addEventListener('keydown', e => {
+      if (e.altKey && e.key.toLowerCase() === 'l') showMoon();
+    });
+  </script>
 
 </body>
 
