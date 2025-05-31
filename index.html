@@ -317,7 +317,7 @@
     <div class="max-w-xl mx-auto">
       <h2 class="section-title text-4xl font-bold text-center mb-12">Get In Touch</h2>
       
-      <form id="contact-form" action="#" method="POST" class="card p-8 space-y-6 transition-colors duration-500">
+      <form id="contact-form" action="" class="card p-8 space-y-6 transition-colors duration-500">
         <div>
           <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark">Name</label>
           <input type="text" id="name" name="name" required
@@ -339,7 +339,35 @@
           class="w-full bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-smooth transition-all duration-300">
           Send Message
         </button>
-      </form>
+        </form>
+        <script>
+          const form = document.getElementById('contact-form');
+
+          form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const payload = {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              message: formData.get('message')
+            };
+
+            try {
+              const res = await fetch('https://naz-contact.onrender.com/api/message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+
+              if (!res.ok) throw new Error(res.statusText);
+              alert('✅ Message sent successfully!');
+              form.reset();
+            } catch (err) {
+              console.error(err);
+              alert('❌ Error sending message. Please try again later.');
+            }
+          });
+        </script>
       
       <div class="mt-8 text-center">
         <p class="text-gray-600 dark:text-gray-400">Or connect with me on</p>
