@@ -82,7 +82,7 @@
           <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Networking</span>
           <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded mr-1 mb-1">Security</span>
           <span class="inline-block text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded mr-1 mb-1">ITIL Foundation</span>
-          <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Limux Essentials</span>
+          <span class="inline-block text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Linux Essentials</span>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
           <h4 class="text-lg font-semibold mb-2">VR Development</h4>
           <p class="text-sm text-gray-700 mb-2">Built full-stack VR applications for user interaction research at Carleton.</p>
           <span class="inline-block text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Unity</span>
-          <span class="inline-block text-xs bg-red-100 text-indigo-800 px-2 py-1 rounded">C#</span>  `
+          <span class="inline-block text-xs bg-red-100 text-indigo-800 px-2 py-1 rounded">C#</span>
         </div>
         <!-- Card: APIScan.io with accordion -->
 <div class="bg-white shadow-md rounded-lg p-6 mt-6">
@@ -118,6 +118,8 @@
   <span class="inline-block text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded mb-1">ReportLab</span>
   <span class="inline-block text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded mr-1 mb-1">Git</span>
   <span class="inline-block text-xs bg-violet-100 text-violet-800 px-2 py-1 rounded mr-1 mb-1">SQLAlchemy</span>
+  <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Kali Linux</span>
+  <span class="inline-block text-xs bg-green-100 text-green-800 px-2 py-1 rounded mr-1 mb-1">Cloud Deployment</span>
 
   <!-- Accordion trigger -->
   <button
@@ -296,5 +298,12 @@
     });
   </script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <!-- 1. Load once, near </body> -->
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+  <script>
+  // Parse everything after the DOM is ready
+  document.addEventListener("DOMContentLoaded", () => twemoji.parse(document.body));
+</script>
+
 </body>
 </html>
