@@ -94,11 +94,12 @@
     <!-- Butterfly Easter Egg (tiny speck) -->
     <div id="butterfly-egg"
          class="absolute top-8 right-10 w-0.5 h-0.5 bg-black/30 cursor-pointer overflow-visible">
-      <svg class="scale-0 transition-all duration-500"
-           viewBox="0 0 120 120" width="64" height="64"
-           fill="none" stroke="rgb(255,189,248)" stroke-width="3">
-        <path d="M60 60 Q30 20 10 60 Q30 100 60 60
-                 M60 60 Q90 20 110 60 Q90 100 60 60"/>
+      <svg class="scale-0 transition-all duration-500" viewBox="0 0 120 120" width="64" height="64" fill="none" stroke="#ffbdf8" stroke-width="3">
+        <path d="M60 60 C35 30,  15 30, 15 60 C15 90,  35 90, 60 60" />
+        <path d="M60 60 C85 30, 105 30,105 60 C105 90, 85 90, 60 60" />
+        <line x1="60" y1="45" x2="60" y2="75" stroke-linecap="round" />
+        <path d="M60 45 Q55 35 50 38" />
+        <path d="M60 45 Q65 35 70 38" />
       </svg>
     </div>
   </header>
