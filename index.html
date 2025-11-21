@@ -60,6 +60,34 @@
         0%,100% { transform: scale(1)   rotate(0deg); }
         50%     { transform: scale(1.15) rotate(6deg); }
       }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: scale(1) translateY(0); }
+        25% { transform: scale(1.1) translateY(-30px); }
+        50% { transform: scale(0.95) translateY(0); }
+        75% { transform: scale(1.05) translateY(-15px); }
+      }
+
+      @keyframes wave {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-15deg); }
+        75% { transform: rotate(15deg); }
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.6)); }
+        50% { filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.9)); }
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
     }
   </style>
 </head>
@@ -433,6 +461,74 @@
   <span id="theme-icon" class="text-2xl">🌙</span>
 </button>
 
+<!-- Gamify Mascot -->
+<div id="code-buddy" class="fixed z-40 cursor-pointer select-none transition-all duration-300 ease-out"
+     style="width: 80px; height: 80px; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+  <svg viewBox="0 0 100 100" width="100%" height="100%" class="drop-shadow-lg">
+    <!-- Main body (orange circle) -->
+    <circle cx="50" cy="50" r="35" fill="#FF8C00" opacity="0.95"/>
+
+    <!-- Eyes -->
+    <g id="buddy-eyes">
+      <ellipse cx="38" cy="45" rx="6" ry="8" fill="#fff"/>
+      <ellipse cx="62" cy="45" rx="6" ry="8" fill="#fff"/>
+      <circle cx="38" cy="46" r="3" fill="#1f2937"/>
+      <circle cx="62" cy="46" r="3" fill="#1f2937"/>
+    </g>
+
+    <!-- Happy mouth -->
+    <path id="buddy-mouth" d="M 35 58 Q 50 68 65 58" stroke="#1f2937" stroke-width="2.5"
+          fill="none" stroke-linecap="round"/>
+
+    <!-- Code brackets decorations -->
+    <text x="25" y="35" font-size="12" fill="#fff" opacity="0.8" font-weight="bold">&lt;</text>
+    <text x="68" y="35" font-size="12" fill="#fff" opacity="0.8" font-weight="bold">/&gt;</text>
+
+    <!-- Arms (animated on interaction) -->
+    <g id="buddy-arms">
+      <ellipse cx="20" cy="55" rx="8" ry="5" fill="#FF8C00" opacity="0.9"
+               transform="rotate(-20 20 55)"/>
+      <ellipse cx="80" cy="55" rx="8" ry="5" fill="#FF8C00" opacity="0.9"
+               transform="rotate(20 80 55)"/>
+    </g>
+
+    <!-- Sparkles appear on interaction -->
+    <g id="buddy-sparkles" opacity="0">
+      <circle cx="25" cy="25" r="2" fill="#FFD700"/>
+      <circle cx="75" cy="25" r="2" fill="#FFD700"/>
+      <circle cx="25" cy="75" r="2" fill="#FFD700"/>
+      <circle cx="75" cy="75" r="2" fill="#FFD700"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Score Display -->
+<div id="score-display"
+     class="fixed top-6 left-6 z-50 bg-white dark:bg-gray-800 text-gray-800 dark:text-white
+            rounded-xl px-4 py-2 shadow-md transition-all duration-300 opacity-0 scale-75">
+  <div class="flex items-center gap-2">
+    <span class="text-2xl">🎮</span>
+    <div>
+      <div class="text-xs opacity-70">Score</div>
+      <div id="score-value" class="text-xl font-bold">0</div>
+    </div>
+  </div>
+</div>
+
+<!-- Achievement Toast -->
+<div id="achievement-toast"
+     class="fixed top-24 left-6 z-50 bg-gradient-to-r from-purple-500 to-pink-500
+            text-white rounded-xl px-6 py-3 shadow-lg transition-all duration-500
+            opacity-0 scale-75 translate-y-4">
+  <div class="flex items-center gap-3">
+    <span class="text-3xl">🏆</span>
+    <div>
+      <div class="font-bold" id="achievement-title">Achievement!</div>
+      <div class="text-sm" id="achievement-desc">You did it!</div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Theme Toggle Logic -->
 <script>
@@ -453,6 +549,248 @@
     const isDark = document.documentElement.classList.contains('dark');
     setTheme(isDark ? 'light' : 'dark');
   });
+</script>
+
+<!-- Code Buddy Gamification Script -->
+<script>
+  (function() {
+    const buddy = document.getElementById('code-buddy');
+    const scoreDisplay = document.getElementById('score-display');
+    const scoreValue = document.getElementById('score-value');
+    const achievementToast = document.getElementById('achievement-toast');
+    const achievementTitle = document.getElementById('achievement-title');
+    const achievementDesc = document.getElementById('achievement-desc');
+    const buddySparkles = document.getElementById('buddy-sparkles');
+    const buddyArms = document.getElementById('buddy-arms');
+
+    let score = 0;
+    let clicks = 0;
+    let isFollowingCursor = false;
+    let achievementsUnlocked = new Set();
+    let lastScrollY = 0;
+
+    // Initialize - Show score display after a moment
+    setTimeout(() => {
+      scoreDisplay.style.opacity = '1';
+      scoreDisplay.style.transform = 'scale(1)';
+    }, 500);
+
+    // Idle floating animation
+    function startFloating() {
+      buddy.style.animation = 'float 3s ease-in-out infinite';
+    }
+    startFloating();
+
+    // Follow cursor smoothly
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    document.addEventListener('mousemove', (e) => {
+      isFollowingCursor = true;
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function updatePosition() {
+      if (isFollowingCursor) {
+        const dx = targetX - currentX;
+        const dy = targetY - currentY;
+        currentX += dx * 0.08; // Smooth easing
+        currentY += dy * 0.08;
+
+        buddy.style.left = `${currentX}px`;
+        buddy.style.top = `${currentY}px`;
+        buddy.style.transform = 'translate(-50%, -50%)';
+      }
+      requestAnimationFrame(updatePosition);
+    }
+    updatePosition();
+
+    // Click interaction - bounce and add score
+    buddy.addEventListener('click', () => {
+      clicks++;
+      score += 10;
+      scoreValue.textContent = score;
+
+      // Bounce animation
+      buddy.style.animation = 'none';
+      setTimeout(() => {
+        buddy.style.animation = 'bounce 0.6s ease-out, float 3s ease-in-out infinite';
+      }, 10);
+
+      // Show sparkles
+      buddySparkles.style.opacity = '1';
+      buddySparkles.style.animation = 'spin 0.6s ease-out';
+      setTimeout(() => {
+        buddySparkles.style.opacity = '0';
+        buddySparkles.style.animation = 'none';
+      }, 600);
+
+      // Wave arms
+      buddyArms.style.animation = 'wave 0.4s ease-in-out';
+      setTimeout(() => {
+        buddyArms.style.animation = 'none';
+      }, 400);
+
+      // Score display pulse
+      scoreDisplay.style.transform = 'scale(1.15)';
+      setTimeout(() => {
+        scoreDisplay.style.transform = 'scale(1)';
+      }, 200);
+
+      // Check achievements
+      checkAchievements();
+    });
+
+    // Double-click for bonus points
+    buddy.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      score += 50;
+      scoreValue.textContent = score;
+      unlockAchievement('Speed Clicker!', 'Double-click bonus +50!');
+    });
+
+    // Scroll interaction
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+
+      if (scrollDelta > 100) {
+        score += 5;
+        scoreValue.textContent = score;
+
+        // Spin on fast scroll
+        buddy.style.animation = 'spin 0.5s ease-out, float 3s ease-in-out infinite';
+        setTimeout(() => {
+          buddy.style.animation = 'float 3s ease-in-out infinite';
+        }, 500);
+      }
+
+      lastScrollY = currentScrollY;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(checkAchievements, 500);
+    });
+
+    // Hover effect
+    buddy.addEventListener('mouseenter', () => {
+      buddy.style.filter = 'drop-shadow(0 0 20px rgba(255, 140, 0, 0.8))';
+      buddy.style.transform = 'translate(-50%, -50%) scale(1.1)';
+    });
+
+    buddy.addEventListener('mouseleave', () => {
+      buddy.style.filter = '';
+      buddy.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+
+    // Achievement system
+    const achievements = [
+      { id: 'first-click', title: 'First Contact!', desc: 'You clicked the Code Buddy!', trigger: () => clicks >= 1 },
+      { id: 'clicker', title: 'Clicker!', desc: '10 clicks! You like me!', trigger: () => clicks >= 10 },
+      { id: 'super-clicker', title: 'Super Clicker!', desc: '50 clicks! Amazing!', trigger: () => clicks >= 50 },
+      { id: 'score-100', title: 'Century!', desc: 'Reached 100 points!', trigger: () => score >= 100 },
+      { id: 'score-500', title: 'High Score!', desc: '500 points! Incredible!', trigger: () => score >= 500 },
+      { id: 'explorer', title: 'Explorer', desc: 'Scrolled through the site!', trigger: () => lastScrollY > 1000 },
+    ];
+
+    function checkAchievements() {
+      achievements.forEach(achievement => {
+        if (!achievementsUnlocked.has(achievement.id) && achievement.trigger()) {
+          unlockAchievement(achievement.title, achievement.desc);
+          achievementsUnlocked.add(achievement.id);
+        }
+      });
+    }
+
+    function unlockAchievement(title, desc) {
+      achievementTitle.textContent = title;
+      achievementDesc.textContent = desc;
+
+      achievementToast.style.opacity = '1';
+      achievementToast.style.transform = 'scale(1) translateY(0)';
+
+      // Play celebration animation on buddy
+      buddy.style.animation = 'bounce 0.6s ease-out, pulse-glow 2s ease-in-out';
+      setTimeout(() => {
+        buddy.style.animation = 'float 3s ease-in-out infinite';
+      }, 2000);
+
+      // Hide toast after 3 seconds
+      setTimeout(() => {
+        achievementToast.style.opacity = '0';
+        achievementToast.style.transform = 'scale(0.75) translateY(16px)';
+      }, 3000);
+
+      // Add bonus score
+      score += 25;
+      scoreValue.textContent = score;
+    }
+
+    // Easter egg: Konami code (up, up, down, down, left, right, left, right)
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+                            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.key);
+      konamiCode = konamiCode.slice(-8); // Keep last 8 keys
+
+      if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+        unlockAchievement('Konami Master!', 'You found the secret code! +1000 points!');
+        score += 1000;
+        scoreValue.textContent = score;
+        konamiCode = [];
+
+        // Rainbow effect
+        let colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F'];
+        let colorIndex = 0;
+        const colorInterval = setInterval(() => {
+          buddy.querySelector('circle').setAttribute('fill', colors[colorIndex]);
+          colorIndex = (colorIndex + 1) % colors.length;
+        }, 200);
+
+        setTimeout(() => {
+          clearInterval(colorInterval);
+          buddy.querySelector('circle').setAttribute('fill', '#FF8C00');
+        }, 3000);
+      }
+    });
+
+    // Secret click pattern: Triple-click for mega bonus
+    let clickTimer;
+    let rapidClicks = 0;
+    buddy.addEventListener('click', () => {
+      rapidClicks++;
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        if (rapidClicks >= 5 && !achievementsUnlocked.has('rapid-fire')) {
+          unlockAchievement('Rapid Fire!', 'Lightning fast clicks! +200 points!');
+          score += 200;
+          scoreValue.textContent = score;
+          achievementsUnlocked.add('rapid-fire');
+        }
+        rapidClicks = 0;
+      }, 1000);
+    });
+
+    // Mobile touch support
+    let touchStartTime;
+    buddy.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      touchStartTime = Date.now();
+    });
+
+    buddy.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      const touchDuration = Date.now() - touchStartTime;
+      if (touchDuration < 200) {
+        buddy.click(); // Trigger click event
+      }
+    });
+
+  })();
 </script>
 
 <!-- Emoji and HTMX Scripts -->
